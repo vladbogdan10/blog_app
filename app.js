@@ -23,21 +23,6 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
-// Blog.create(
-//   {
-//   title: "Just a post",
-//   image: "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d1c8cc988efddbda8746281871c0c8bf&auto=format&fit=crop&w=1559&q=80",
-//   body: "Just testing if the blog post works."
-    
-//   }, function(err, blog) {
-//     if(err) {
-//       console.log(err);
-//     } else {
-//       console.log("Newly created post: ");
-//       console.log(blog);
-//     }
-//   });
-
 // RESTFUL ROUTES
 app.get("/", function(req, res) {
   res.redirect("/blogs");
@@ -117,5 +102,5 @@ app.delete("/blogs/:id", function(req, res) {
 });
 
 app.listen(3000, function() {
-  console.log("Server has started!!!");
+  console.log("Server has started on port: 3000");
 });
