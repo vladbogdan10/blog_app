@@ -1,5 +1,5 @@
 <% include ./partials/header.ejs %>
- 
+
   <div class="ui main text container segment">
     <div class="ui huge header"> <%= blog.title %> </div>
     <div class="ui top attached">
@@ -12,11 +12,24 @@
           <p> <%- blog.body %> </p>
         </div>
         <a class="ui yellow button" href="/blogs/<%= blog._id %>/edit">Edit</a>
-        <form class="inline" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-          <button class="ui red button">Delete</button>
+        <form id="del-form" class="inline" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+          <button id="del-btn" class="ui red button">Delete</button>
         </form>
       </div>
     </div>
   </div>
+
+  <!-- Delete Modal -->
+  <div class="ui modal">
+      <div class="header">DELETE</div>
+      <div class="content">
+        <p>Are you sure you want to DELETE this post?</p>
+      </div>
+      <div class="actions">
+        <div class="ui cancel button">Cancel</div>
+        <div class="ui approve red button">Delete</div>
+      </div>
+    </div>
+    <!-- End of Delete Modal -->
   
  <% include ./partials/footer.ejs %>
