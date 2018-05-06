@@ -1,0 +1,21 @@
+<% include ./partials/header.ejs %>
+
+<div class="ui container">
+  <h1 class="ui center aligned header">Sign Up for Free Virtual Cookies</h1>
+
+  <form class="ui form segment" action="/register" method="POST">
+    <div class="field">
+      <label>User Name</label>
+      <input type="text" name="username" placeholder="User Name">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Password">
+    </div>
+    <div class="ui centered">
+      <button class="ui button primary fluid" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+
+<% include ./partials/footer.ejs %>

@@ -9,3 +9,9 @@ i.icon {
 .inline {
   display: inline;
 }
+
+.ui.form {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
