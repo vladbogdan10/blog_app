@@ -1,7 +1,8 @@
-var express    = require('express'),
-    router     = express.Router();
-    Blog       = require('../models/blog');
-    middleWare = require('../middleware/middleware');
+var express      = require('express'),
+    router       = express.Router(),
+    Blog         = require('../models/blog'),
+    middleWare   = require('../middleware/middleware'),
+    sanitizeHtml = require('sanitize-html');
 
 
 // NEW ROUTE
@@ -11,19 +12,22 @@ router.get('/blogs/new', middleWare.isLoggedIn, function(req, res) {
 
 // CREATE ROUTE
 router.post('/blogs', middleWare.isLoggedIn, function(req, res) {
-  var title = req.body.title,
-      image = req.body.image,
-      body  = req.body.body;
-  var author = {
-    id: req.user._id,
-    username: req.user.username
-  };
+  var title  = req.body.title,
+      image  = req.body.image,
+      body   = sanitizeHtml(req.body.body, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+      }),
+      author = {
+        id: req.user._id,
+        username: req.user.username
+      };
 
   var newBlog = {title: title, image: image, body: body, author: author};
-  // req.body.blog.body = req.sanitize(req.body.blog.body);
+
   Blog.create(newBlog, function(err) {
     if (err) {
       res.render('new');
+      console.log(err);
     } else {
       res.redirect('/blogs');
     }
@@ -54,7 +58,9 @@ router.get('/blogs/:id/edit', function(req, res) {
 
 // UPDATE ROUTE
 router.put('/blogs/:id', function(req, res) {
-  req.body.blog.body = req.sanitize(req.body.blog.body);
+  req.body.blog.body = sanitizeHtml(req.body.blog.body, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+  });
   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlogPost) {
     if (err) {
       res.redirect('/blogs');
