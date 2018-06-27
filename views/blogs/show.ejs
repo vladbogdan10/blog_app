@@ -1,0 +1,79 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+
+  <div class="ui main text container segment">
+    <div class="ui huge header">
+      <h1><%= blog.title %></h1>
+    </div>
+    <div class="ui top attached">
+      <div class="item">
+        <img class="ui centered rounded image" src="<%= blog.image %>">
+        <div class="content">
+          <p>Submited by: <%= blog.author.username %></p>
+          <span> <%= blog.created.toDateString() %> </span>
+        </div>
+        <div class="description">
+          <%- blog.body %>
+        </div>
+        <% if (currentUser && blog.author.id.equals(currentUser._id)) { %>
+          <a class="ui yellow button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+          <form id="del-form" class="inline" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+            <button id="del-btn" class="ui red button">Delete</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui text container">
+    <% blog.comments.forEach(function(comment) { %>
+      <div class="ui comments">
+        <div class="comment">
+          <!-- <a class="avatar">
+                <img src="/images/avatar/small/joe.jpg">
+              </a> -->
+          <div class="content">
+            <a class="author">
+              <%= comment.author.username %>
+            </a>
+            <div class="metadata">
+              <div class="date"> <%= moment(comment.created).fromNow() %> </div>
+            </div>
+            <div class="text">
+              <p>
+                <%= comment.text %>
+              </p>
+            </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+    <form class="ui reply form" action="/blogs/<%= blog._id %>/comments" method="POST">
+      <% if (currentUser) { %>
+        <div class="field">
+          <textarea name="comment[text]"></textarea>
+        </div>
+      <% } %>
+      <button class="ui primary submit labeled icon button">
+        <i class="icon edit"></i> Add Comment
+      </button>
+    </form>
+  </div>
+
+  <!-- Delete Modal -->
+  <div class="ui modal">
+      <div class="header">DELETE</div>
+      <div class="content">
+        <p>Are you sure you want to DELETE this post?</p>
+      </div>
+      <div class="actions">
+        <div class="ui cancel button">Cancel</div>
+        <div class="ui approve red button">Delete</div>
+      </div>
+    </div>
+    <!-- End of Delete Modal -->
+  
+ <% include ../partials/footer.ejs %>

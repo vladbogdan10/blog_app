@@ -1,0 +1,25 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/admin-sidebar.ejs %>
+ 
+  <div class="pusher">
+    <div class="ui main text container segment ">
+      <div class="ui huge header">New Blog Post</div>
+      <form class="ui form" action="/blogs" method="POST">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" name="title" placeholder="Title">
+        </div>
+        <div class="field">
+          <label>Image URL</label>
+          <input type="text" name="image" placeholder="Image URL">
+        </div>
+        <div class="field">
+          <label>Blog Post</label>
+          <textarea id="blog-body" name="body"></textarea>
+        </div>
+        <input class="ui teal button" type="submit">
+      </form>
+    </div>
+  </div>
+
+ <% include ../partials/footer.ejs %>
