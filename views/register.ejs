@@ -1,21 +1,42 @@
 <% include ./partials/header.ejs %>
 
-<div class="ui container">
-  <h1 class="ui center aligned header">Sign Up for Free Virtual Cookies</h1>
-
-  <form class="ui form segment" action="/register" method="POST">
-    <div class="field">
-      <label>User Name</label>
-      <input type="text" name="username" placeholder="User Name">
+  <div class="centered-form">
+    <div class="form-container">
+      <h2 class="ui teal header">
+        <div class="content">
+          Sign Up for Free Virtual Cookies!
+        </div>
+      </h2>
+      <form class="ui large form" action="/register" method="POST">
+        <div class="ui stacked segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" name="username" placeholder="Username">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="envelope icon"></i>
+              <input type="text" name="email" placeholder="E-mail address">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          <button class="ui fluid large teal submit button">Sign Up</button>
+        </div>
+        <div class="ui error message"></div>
+      </form>
+      <div class="ui message">
+        Already have an account? <a href="/login">Sign-in</a>
+      </div>
     </div>
-    <div class="field">
-      <label>Password</label>
-      <input type="password" name="password" placeholder="Password">
-    </div>
-    <div class="ui centered">
-      <button class="ui button primary fluid" type="submit">Submit</button>
-    </div>
-  </form>
-</div>
+    <br>
+    <a href="/">Go Back</a>
+  </div>
 
 <% include ./partials/footer.ejs %>
