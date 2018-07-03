@@ -1,20 +1,17 @@
-var express               = require('express'),
-    app                   = express(),
-    bodyParser            = require('body-parser'),
-    mongoose              = require('mongoose'),
-    flash                 = require('connect-flash'),
-    // expressSanitizer      = require('express-sanitizer'),
-    passport              = require('passport'),
-    // LocalStrategy         = require('passport-local'),
-    methodOverried        = require('method-override'),
-    User                  = require('./models/user');
-    // Blog                  = require('./models/blog');
-
+var express        = require('express'),
+    app            = express(),
+    bodyParser     = require('body-parser'),
+    mongoose       = require('mongoose'),
+    flash          = require('connect-flash'),
+    passport       = require('passport'),
+    methodOverried = require('method-override'),
+    User           = require('./models/user');
 
 // REQUIRE ROUTES
-var indexRoutes = require('./routes/index'),
-    blogRoutes  = require('./routes/blog'),
-    userRoutes  = require('./routes/user');
+var indexRoutes   = require('./routes/index'),
+    blogRoutes    = require('./routes/blog'),
+    commentRoutes = require('./routes/comment'),
+    adminRoutes    = require('./routes/admin');
 
 // APP CONFIG
 mongoose.connect('mongodb://localhost:27017/blog_app');
@@ -22,7 +19,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/node_modules/trumbowyg/dist'));
 app.use(bodyParser.urlencoded({extended: true}));
-// app.use(expressSanitizer());
 app.use(methodOverried('_method'));
 app.use(flash());
 
@@ -47,8 +43,9 @@ app.use(function(req, res, next) {
 
 app.use(indexRoutes);
 app.use(blogRoutes);
-app.use(userRoutes);
+app.use(commentRoutes);
+app.use(adminRoutes);
 
-app.listen(5050, function() {
-  console.log('Server has started on port: 5050');
+app.listen(3000, function() {
+  console.log('Server has started on port: 3000');
 });
