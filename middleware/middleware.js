@@ -9,4 +9,13 @@ middleWareObj.isLoggedIn = function (req, res, next) {
   }
 };
 
+middleWareObj.isAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && req.user.admin) {
+    return next();
+  } else {
+    req.flash('error', 'You need to be logged in as admin to do that');
+    res.redirect('/admin/login');
+  }
+};
+
 module.exports = middleWareObj;
