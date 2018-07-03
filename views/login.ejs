@@ -1,21 +1,38 @@
 <% include ./partials/header.ejs %>
+<!-- <% include ./partials/navbar.ejs %> -->
 
-<div class="ui container">
-  <h1 class="ui center aligned header">Sign In</h1>
+  <div class="centered-form">
+    <div class="form-container">
+      <h2 class="ui teal header">
+        <div class="content">
+          Log-in to your account
+        </div>
+      </h2>
+      <form class="ui large form" action="/login" method="POST">
+        <div class="ui stacked segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="envelope icon"></i>
+              <input type="text" name="email" placeholder="E-mail address">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          <button class="ui fluid large teal submit button">Login</button>
+        </div>
+        <div class="ui error message"></div>
+      </form>
 
-  <form class="ui form segment" action="/login" method="POST">
-    <div class="field">
-      <label>Email</label>
-      <input type="text" name="email" placeholder="Email">
+      <div class="ui message">
+        New to us? <a href="/register">Sign Up</a>
+      </div>
     </div>
-    <div class="field">
-      <label>Password</label>
-      <input type="password" name="password" placeholder="Password">
-    </div>
-    <div class="ui centered">
-      <button class="ui button primary fluid" type="submit">Submit</button>
-    </div>
-  </form>
-</div>
-
+    <br>
+    <a href="/">Go Back</a>
+  </div>
+  
 <% include ./partials/footer.ejs %>
