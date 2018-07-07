@@ -1,0 +1,30 @@
+<% include ../partials/header.ejs %>
+  <% include ../partials/navbar.ejs %>
+
+  <div class="ui container josefin-font top-spacing">
+    <% blogs.forEach(function(blogs) { %>
+			<div class="ui very relaxed items">
+				<div class="item">
+					<div class="ui medium image">
+						<img src="<%= blogs.image %>" alt="blog image">
+					</div>
+					<div class="content">
+						<a class="header"> <%= blogs.title %> </a>
+						<div class="meta">
+							<p class="blog__category"> <%= blogs.category %> </p>
+						</div>
+						<div class="blog__body">
+							<%- blogs.body.substring(0, 200) %>...
+							<a href="/blogs/<%= blogs._id %>">continue reading</a>
+						</div>
+						<div class="extra">
+							<p class="blog__date"><%= blogs.createdAt.toDateString() %></p>
+							<p> Posted by <%= blogs.author.username %> </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% }); %>
+  </div>
+
+<% include ../partials/footer.ejs %>
