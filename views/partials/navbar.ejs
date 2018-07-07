@@ -1,0 +1,22 @@
+	<nav>
+		<div class="ui secondary pointing stackable menu navbar">
+			<a href="/" class="item active">
+				Home
+			</a>
+			<a href="/blogs" class="item">
+				Blogs
+			</a>
+			<a class="item">
+				Contact
+			</a>
+			<div class="right menu">
+				<% if (!currentUser) { %>
+					<a href="/login" class="ui item">Log in</a>
+					<a href="/register" class="ui item">Sign up</a>
+				<% } else { %>
+					<a href="/user/ <%= currentUser._id %>" class="ui item">Hi &nbsp;<strong> <%= currentUser.username %> </strong></a>
+					<a href="/logout" class="ui item">Log out</a>
+				<% } %>
+			</div>
+		</div>
+	</nav>
