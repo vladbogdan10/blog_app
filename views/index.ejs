@@ -1,37 +1,63 @@
 <% include ./partials/header.ejs %>
+	<% include ./partials/navbar.ejs %>
 
-  <div class="ui main text container">
-    <div class="ui huge header">Node.js Blog</div>
-    <div class="ui top attached segment">
-      <div class="ui divided items">
-        <% blogs.forEach(function(blog) { %>
-          <div class="item">
-            <div class="image">
-              <img src="<%= blog.image %>">
-            </div>
-            <div class="content">
-              <a class="header" href="/blogs/<%= blog._id %>">
-                <%= blog.title %>
-              </a>
-              <div class="meta">
-                <span>
-                  <%= blog.created.toDateString() %>
-                </span>
-              </div>
-              <div class="description">
-                <p>
-                  <%- blog.body.substring(0, 100) %> ...</p>
-              </div>
-              <div class="extra">
-                <a class="ui teal button" href="/blogs/<%= blog._id %>">
-                  Read More
-                </a>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-      </div>
-    </div>
-  </div>
+		<div class="hero-header">
+			<div class="ui container center aligned hero-header__title">
+				<img src="/images/blog-title.png" alt="">
+			</div>
+		</div>
 
-  <% include ./partials/footer.ejs %>
+		<div class="ui container text center aligned josefin-font">
+			<p class="blog__category">Books / Nature</p>
+			<p class="blog__title">Awesome content</p>
+			<div class="blog__middle-line"></div>
+			<p class="site-motto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius neque et lobortis commodo. Donec quis sollicitudin
+				orci, porta accumsan turpis.</p>
+		</div>
+
+		<div class="ui container top-spacing josefin-font">
+			<div class="column">
+				<div class="crop">
+					<img class="ui fluid image" src="<%= blogs[0].image %>" alt="placeholder">
+				</div>
+				<br>
+				<div class="ui container center aligned">
+					<p class="blog__category"> <%= blogs[0].category %> </p>
+					<p class="blog__title"> <%= blogs[0].title %> </p>
+					<div class="blog__middle-line"></div>
+					<span class="blog__date">Posted On <%= blogs[0].createdAt.toDateString() %></span>
+				</div>
+				<br>
+				<div class="blog__body">
+						<%- blogs[0].body.substring(0, 700) %>...
+				</div>
+				<br>
+				<a class="ui container center aligned tiny olive header" href="/blogs/<%= blogs[0]._id %>">CONTINUE READING</a>
+			</div>
+
+			<div class="ui stackable two column grid top-spacing">
+				<% blogs.slice(1).forEach(function(blogs) { %>
+					<div class="column">
+						<img class="ui fluid image" src="<%= blogs.image %>" alt="placeholder">
+						<br>
+						<div class="ui container center aligned">
+							<p class="blog__category"> <%= blogs.category %> </p>
+							<p class="blog__title blog__title--small"> <%= blogs.title %> </p>
+							<div class="blog__middle-line blog__middle-line--small"></div>
+							<span class="blog__date">Posted On <%= blogs.createdAt.toDateString() %></span>
+						</div>
+						<br>
+						<div class="blog__body">
+							<%- blogs.body.substring(0, 150) %>...
+							<a href="/blogs/<%= blogs._id %>">continue reading</a>
+						</div>
+					</div>
+				<% }); %>
+			</div>
+			<div class="ui divider"></div>
+			<div class="ui container center aligned">
+				<a href="#">Click for More</a>
+			</div>
+		</div>
+
+		<% include ./partials/footer.ejs %>
