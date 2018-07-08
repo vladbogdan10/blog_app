@@ -1,5 +1,5 @@
 body {
-	padding: 1em;
+	padding: 1em !important;
 }
 
 .josefin-font,
@@ -7,6 +7,16 @@ body {
 .header,
 h1, h2, h3, h4, h5 {
 	font-family: 'Josefin Sans', sans-serif !important;
+}
+
+.navbar {
+	background-color: white !important;
+	position: fixed;
+	right: 1em;
+	left: 1em;
+	top: 0;
+	padding-top: 1em;
+	z-index: 200;
 }
 
 .centered-form {
@@ -19,16 +29,16 @@ h1, h2, h3, h4, h5 {
 }
 
 .hero-header {
+	margin-top: 50px;
 	background: url('../images/hero-image.jpg') center top;
 	background-size: cover;
 	height: 75vh;
-	/* height: 550px; */
 	margin-bottom: 50px;
 }
 
 .hero-header img {
 	max-width: 250px;
-	margin-top: 30px;
+	margin-top: 10px;
 }
 
 /* INTRO: UNDER HERO HEADER */
