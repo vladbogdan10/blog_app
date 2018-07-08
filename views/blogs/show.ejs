@@ -1,43 +1,41 @@
 <% include ../partials/header.ejs %>
-<% include ../partials/navbar.ejs %>
+  <% include ../partials/navbar.ejs %>
 
-  <div class="ui main text container segment">
-    <div class="ui huge header">
-      <h1><%= blog.title %></h1>
+  <div class="ui container crop top-spacing">
+    <img class="ui centered image" src="<%= blog.image %>">
+  </div>
+  <div class="ui container text top-spacing">
+    <h1><%= blog.title %></h1>
+    <p>Posted by: <%= blog.author.username %></p>
+    <span class="blog__date"> <%= blog.createdAt.toDateString() %> </span>
+    <div class="blog__body">
+      <%- blog.body %>
     </div>
-    <div class="ui top attached">
-      <div class="item">
-        <img class="ui centered rounded image" src="<%= blog.image %>">
-        <div class="content">
-          <p>Submited by: <%= blog.author.username %></p>
-          <span> <%= blog.created.toDateString() %> </span>
-        </div>
-        <div class="description">
-          <%- blog.body %>
-        </div>
-        <% if (currentUser && blog.author.id.equals(currentUser._id)) { %>
-          <a class="ui yellow button" href="/blogs/<%= blog._id %>/edit">Edit</a>
-          <form id="del-form" class="inline" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-            <button id="del-btn" class="ui red button">Delete</button>
-          </form>
-        <% } %>
-      </div>
-    </div>
+    <% if (currentUser && blog.author.id.equals(currentUser._id)) { %>
+      <a class="ui yellow button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+      <form id="del-form" class="inline" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+        <button id="del-btn" class="ui red button">Delete</button>
+      </form>
+    <% } %>
   </div>
 
+  <div class="ui container text top-spacing">
+    <span class="ui horizontal divider header">Comments</span>
+    <!-- <div class="ui divider"></div> -->
+  </div>
   <div class="ui text container">
     <% blog.comments.forEach(function(comment) { %>
       <div class="ui comments">
         <div class="comment">
-          <!-- <a class="avatar">
-                <img src="/images/avatar/small/joe.jpg">
-              </a> -->
+          <a class="avatar">
+            <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+          </a>
           <div class="content">
             <a class="author">
               <%= comment.author.username %>
             </a>
             <div class="metadata">
-              <div class="date"> <%= moment(comment.created).fromNow() %> </div>
+              <div class="date"> <%= moment(comment.createdAt).fromNow() %> </div>
             </div>
             <div class="text">
               <p>
@@ -54,11 +52,12 @@
     <form class="ui reply form" action="/blogs/<%= blog._id %>/comments" method="POST">
       <% if (currentUser) { %>
         <div class="field">
-          <textarea name="comment[text]"></textarea>
+          <textarea name="comment[body]"></textarea>
         </div>
       <% } %>
-      <button class="ui primary submit labeled icon button">
-        <i class="icon edit"></i> Add Comment
+      <button class="ui teal labeled icon button">
+        <i class="icon edit"></i> 
+        Add Comment
       </button>
     </form>
   </div>
