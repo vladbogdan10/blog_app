@@ -1,8 +1,8 @@
 // ADD CLASS ACTIVE TO NAVABR
-$('.menu .item').on('click', function() {
-  $('.menu .item').removeClass('active');
-  $(this).addClass('active');
-}); 
+// $('.menu .item').on('click', function() {
+//   $('.menu .item').removeClass('active');
+//   $(this).addClass('active');
+// }); 
 
 // Prompt user on delete
 $('#del-btn').click(function() {
@@ -59,3 +59,7 @@ $('.ui.form').form({
     }
   }
 });
+
+// DROPDOWN INITIALIZE
+$('.ui.dropdown')
+  .dropdown();
