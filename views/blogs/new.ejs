@@ -2,12 +2,16 @@
 <% include ../partials/admin-sidebar.ejs %>
  
   <div class="pusher">
-    <div class="ui main text container segment ">
-      <div class="ui huge header">New Blog Post</div>
+    <div class="ui main text container segment">
+      <h1>New Blog Post</h1>
       <form class="ui form" action="/blogs" method="POST">
         <div class="field">
           <label>Title</label>
           <input type="text" name="title" placeholder="Title">
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <input type="text" name="category" placeholder="Enter a category">
         </div>
         <div class="field">
           <label>Image URL</label>
