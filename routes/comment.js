@@ -11,11 +11,11 @@ router.post('/blogs/:id/comments', middleWare.isLoggedIn, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      if (!req.body.comment) {
+      if (!req.body.comment.body) {
         req.flash('error', 'Your comment could not be submited because was empty!');
         res.redirect('/blogs/' + blog._id);
       } else {
-        req.body.comment.text = sanitizeHtml(req.body.comment.text);
+        req.body.comment.text = sanitizeHtml(req.body.comment.body);
         Comment.create(req.body.comment, function(err, comment) {
           if (err) {
             req.flash('error', 'Something went wrong');
