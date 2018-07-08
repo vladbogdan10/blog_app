@@ -5,24 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Node.js Blog</title>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/semantic-ui/dist/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/ui/trumbowyg.min.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400" rel="stylesheet">
 </head>
 <body>
-  <nav>
-    <div class="ui fixed inverted menu">
-      <div class="ui container">
-        <div class="header item">
-          <i class="code icon"></i>
-          Node.js Blog
+
+  <div class="ui container">
+    <% if (success && success.length > 0) { %>
+      <div class="ui success message">
+        <i class="close icon"></i>
+        <div class="header">
+          Cool!
         </div>
-        <a href="/" class="item">Home</a>
-        <a href="/blogs/new" class="item">New Post</a>
+        <p> <%- success %> </p>
       </div>
-      <div class="right menu">
-        <a href="/" class="item">Log In</a>
-        <a href="/register" class="item">Register</a>
-        <a href="/" class="item">Log Out</a>
+    <% } %>
+    
+    <% if (error && error.length > 0) { %>
+      <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+          Oops!
+        </div>
+        <p> <%= error %> </p>
       </div>
-    </div>
-  </nav>
+    <% } %>
+  </div>
