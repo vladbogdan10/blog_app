@@ -1,14 +1,15 @@
 <% include ./partials/header.ejs %>
+  <% include ./partials/navbar.ejs %>
 
-  <div class="centered-form">
-    <div class="form-container">
+  <div class="ui middle aligned center aligned grid centered-form">
+    <div class="column form-container">
       <h2 class="ui teal header">
         <div class="content">
           Sign Up for Free Virtual Cookies!
         </div>
       </h2>
       <form class="ui large form" action="/register" method="POST">
-        <div class="ui stacked segment">
+        <div class="ui segment">
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
@@ -34,9 +35,9 @@
       <div class="ui message">
         Already have an account? <a href="/login">Sign-in</a>
       </div>
+      <br>
+      <a href="/">Go Back</a>
     </div>
-    <br>
-    <a href="/">Go Back</a>
   </div>
 
 <% include ./partials/footer.ejs %>
