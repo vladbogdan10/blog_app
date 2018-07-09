@@ -1,15 +1,15 @@
 <% include ./partials/header.ejs %>
-<!-- <% include ./partials/navbar.ejs %> -->
+  <% include ./partials/navbar.ejs %>
 
-  <div class="centered-form">
-    <div class="form-container">
+  <div class="ui middle aligned center aligned grid centered-form">
+    <div class="column form-container">
       <h2 class="ui teal header">
         <div class="content">
           Log-in to your account
         </div>
       </h2>
       <form class="ui large form" action="/login" method="POST">
-        <div class="ui stacked segment">
+        <div class="ui segment">
           <div class="field">
             <div class="ui left icon input">
               <i class="envelope icon"></i>
@@ -30,9 +30,9 @@
       <div class="ui message">
         New to us? <a href="/register">Sign Up</a>
       </div>
+      <br>
+      <a href="/">Go Back</a>
     </div>
-    <br>
-    <a href="/">Go Back</a>
   </div>
   
 <% include ./partials/footer.ejs %>
