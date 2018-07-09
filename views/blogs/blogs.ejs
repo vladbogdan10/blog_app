@@ -1,30 +1,55 @@
 <% include ../partials/header.ejs %>
-  <% include ../partials/navbar.ejs %>
+	<% include ../partials/navbar.ejs %>
 
-  <div class="ui container josefin-font top-spacing">
-    <% blogs.forEach(function(blogs) { %>
-			<div class="ui very relaxed items">
+	<div class="ui container josefin-font top-spacing--more">
+		<div class="ui divided items">
+			<% blogs.forEach(function(blogs) { %>
 				<div class="item">
-					<div class="ui medium image">
+					<div class="ui large image">
 						<img src="<%= blogs.image %>" alt="blog image">
 					</div>
-					<div class="content">
-						<a class="header"> <%= blogs.title %> </a>
+					<div class="middle aligned content">
+						<a href="/blogs/<%= blogs._id %>" class="blog__title">
+							<%= blogs.title %>
+						</a>
 						<div class="meta">
-							<p class="blog__category"> <%= blogs.category %> </p>
+							<p class="blog__category">
+								<%= blogs.category %>
+							</p>
 						</div>
 						<div class="blog__body">
-							<%- blogs.body.substring(0, 200) %>...
-							<a href="/blogs/<%= blogs._id %>">continue reading</a>
+							<%- blogs.body.substring(0, 210) %>...
+								<a href="/blogs/<%= blogs._id %>">continue reading</a>
 						</div>
 						<div class="extra">
-							<p class="blog__date"><%= blogs.createdAt.toDateString() %></p>
-							<p> Posted by <%= blogs.author.username %> </p>
+							<div class="ui feed">
+								<div class="event">
+									<div class="label">
+										<img src="https://semantic-ui.com/images/avatar/small/joe.jpg">
+									</div>
+									<div class="content">
+										<div class="summary">
+											<p class="user"> <%= blogs.author.username %> </p>
+											<div class="date"> 
+												<%= blogs.createdAt.toDateString() %> 
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		<% }); %>
-  </div>
+				<% }); %>
+		</div>
+		<div class="ui divider"></div>
+		<div class="ui pagination menu">
+			<a class="active item">1</a>
+			<div class="disabled item">...</div>
+			<a class="item">10</a>
+			<a class="item">11</a>
+			<a class="item">12</a>
+		</div>
+	</div>
 
 <% include ../partials/footer.ejs %>
