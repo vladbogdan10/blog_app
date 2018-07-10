@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var blogSchema = new mongoose.Schema({
   title: String,
+  category: String,
   image: String,
   body: String,
   author: {
