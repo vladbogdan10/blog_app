@@ -14,7 +14,7 @@ middleWareObj.isAdmin = function (req, res, next) {
     return next();
   } else {
     req.flash('error', 'You need to be logged in as admin to do that');
-    res.redirect('/admin/login');
+    res.redirect('/login');
   }
 };
 
