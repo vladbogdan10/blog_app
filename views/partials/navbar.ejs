@@ -2,10 +2,11 @@
 		<div class="ui secondary pointing stackable menu navbar">
 			<a href="/" class="item active">Home</a>
 			<a href="/blogs" class="item">Blogs</a>
+			<a class="item">About</a>
 			<a class="item">Contact</a>
 			<div class="ui right dropdown item">
 				<% if (!currentUser) { %>
-					Log in / Sign up
+					Login / Sign up
 				<% } else { %>
 					Hi &nbsp;<strong> <%= currentUser.username %> </strong></a>
 				<% } %>
