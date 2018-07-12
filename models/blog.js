@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var blogSchema = new mongoose.Schema({
   title: String,
@@ -19,5 +20,7 @@ var blogSchema = new mongoose.Schema({
     }
   ]
 }, {timestamps: true});
+
+blogSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Blog', blogSchema);
