@@ -2,8 +2,8 @@
 	<% include ../partials/navbar.ejs %>
 
 	<div class="ui container josefin-font top-spacing--more">
-		<div class="ui divided items">
-			<% blogs.forEach(function(blogs) { %>
+		<div class="ui relaxed divided items">
+			<% blogs.docs.forEach(function(blogs) { %>
 				<div class="item">
 					<div class="ui large image">
 						<img src="<%= blogs.image %>" alt="blog image">
@@ -40,15 +40,18 @@
 						</div>
 					</div>
 				</div>
-				<% }); %>
+			<% }); %>
 		</div>
 		<div class="ui divider"></div>
 		<div class="ui pagination menu">
-			<a class="active item">1</a>
-			<div class="disabled item">...</div>
-			<a class="item">10</a>
+			<% for (var i = 1; i <= blogs.pages; i++) { %>
+				<a href="page-<%= [i] %>" class="item"> <%= [i] %> </a>
+			<% } %>
+			
+
+			<!-- <div class="disabled item">...</div>
 			<a class="item">11</a>
-			<a class="item">12</a>
+			<a class="item">12</a> -->
 		</div>
 	</div>
 
