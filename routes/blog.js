@@ -2,16 +2,20 @@ var express      = require('express'),
 		router       = express.Router(),
 		Blog         = require('../models/blog'),
 		middleWare   = require('../middleware/middleware'),
-		moment       = require('moment'),
-		sanitizeHtml = require('sanitize-html');
+		moment       = require('moment');
 
-// ALL BLOGS ROUTE
+
+// INDEX ROUTE
 router.get('/blogs', function(req, res) {
-	Blog.find()
-		.sort({createdAt: -1})
-		.exec(function(err, blogs) {
-			if (err) {
-				console.log('ERROR!');
+	res.redirect('/blogs/page-1');
+});
+
+// PAGES ROUTE
+router.get('/blogs/page-:page', function(req, res) {
+	Blog.paginate({}, {sort: {createdAt: -1}, page: req.params.page, limit: 5}, function(err, blogs) {
+			if (err || !blogs.docs.length) {
+				req.flash('error', 'The page you are looking for doesn\'t exist');
+				res.redirect('/blogs/page-1');
 			} else {
 				res.render('blogs/blogs', {blogs: blogs});
 			}
@@ -19,7 +23,7 @@ router.get('/blogs', function(req, res) {
 });
 
 // NEW ROUTE
-router.get('/blogs/new', middleWare.isAdmin, function(req, res) {
+router.get('/blogs/new', function(req, res) {
 	res.render('blogs/new');
 });
 
@@ -28,9 +32,7 @@ router.post('/blogs', middleWare.isAdmin, function(req, res) {
 	var title = req.body.title,
 			category = req.body.category,
 			image = req.body.image,
-			body = sanitizeHtml(req.body.body, {
-				allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
-			}),
+			body = req.body.body,
 			author = {
 				id: req.user._id,
 				username: req.user.username
@@ -49,12 +51,23 @@ router.post('/blogs', middleWare.isAdmin, function(req, res) {
 
 // SHOW ROUTE
 router.get('/blogs/:id', function(req, res) {
-	Blog.findById(req.params.id).populate('comments').exec(function(err, showBlogPost) {
+	Blog.findById(req.params.id)
+	.populate('comments')
+	.exec(function(err, showBlogPost) {
 		if (err) {
+			req.flash('error', 'Oops! Something went wrong, or the post is gone! :)');
 			res.redirect('/blogs');
-		} else {
-			res.render('blogs/show', {blog: showBlogPost, moment: moment});
 		}
+	Blog.find()
+		.sort({createdAt: -1})
+		.limit(3)
+		.exec(function(err, nextBlogs) {
+			if (err) {
+				res.redirect('/blogs');
+			} else {
+				res.render('blogs/show', {blog: showBlogPost, nextBlogs: nextBlogs, moment: moment});
+			}
+		});
 	});
 });
 
@@ -71,9 +84,6 @@ router.get('/blogs/:id/edit', middleWare.isAdmin, function(req, res) {
 
 // UPDATE ROUTE
 router.put('/blogs/:id', middleWare.isAdmin, function(req, res) {
-	req.body.blog.body = sanitizeHtml(req.body.blog.body, {
-		allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
-	});
 	Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlogPost) {
 		if (err) {
 			res.redirect('/blogs');
