@@ -2,7 +2,7 @@
   <% include ../partials/navbar.ejs %>
 
   <div class="ui container crop top-spacing">
-    <img class="ui centered image" src="<%= blog.image %>">
+    <img class="ui image" src="<%= blog.image %>">
   </div>
   <div class="ui container text josefin-font top-spacing">
     <h1 class="blog__title"><%= blog.title %></h1>
@@ -13,9 +13,9 @@
         </div>
         <div class="content">
           <div class="summary">
-            <p class="user">
+            <span class="user">
               <%= blog.author.username %>
-            </p>
+            </span>
             <div class="date">
               <%= moment(blog.createdAt).fromNow() %>
             </div>
@@ -23,11 +23,24 @@
         </div>
       </div>
     </div>
-    <!-- <p>Posted by: <%= blog.author.username %></p> -->
-    <!-- <span class="blog__date"> <%= blog.createdAt.toDateString() %> </span> -->
     <div class="blog__body">
       <%- blog.body %>
     </div>
+    <div class="ui divider"></div>
+    <div class="post-icons">
+      <a href="#">
+        <i class="facebook f icon"></i>
+      </a>
+      <a href="#">
+        <i class="twitter icon"></i>
+      </a>
+      <span>
+        <i class="comment icon"></i>
+        <%= blog.comments.length %>
+      </span>
+    </div>
+    <div class="ui divider"></div>
+
     <% if (currentUser && blog.author.id.equals(currentUser._id)) { %>
       <a class="ui yellow button" href="/blogs/<%= blog._id %>/edit">Edit</a>
       <form id="del-form" class="inline" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
@@ -36,7 +49,44 @@
     <% } %>
   </div>
 
-  <div class="ui text container top-spacing">
+  <!-- <div class="ui divider top-spacing"></div> -->
+  <div class="ui container top-spacing--more">
+    <p class="blog__title--small josefin-font">Maybe you like this ones too!</p>
+    <div class="ui stackable three column grid">
+      <% nextBlogs.forEach(function(nextBlogs) { %>
+        <div class="column">
+          <div class="ui link cards">
+            <a class="card post-cards" href="/blogs/<%= nextBlogs._id %>">
+              <div class="image">
+                <img src="<%= nextBlogs.image %>">
+              </div>
+              <div class="content">
+                <div class="header"> <%= nextBlogs.title %> </div>
+                <div class="meta">
+                  <span class="blog__category"> <%= nextBlogs.category %> </span>
+                </div>
+                <div class="description">
+                  <%- nextBlogs.body.substring(0, 50) %>...
+                </div>
+              </div>
+              <div class="extra content">
+                <span class="right floated">
+                  <i class="comment icon"></i>
+                  <%= nextBlogs.comments.length %>
+                </span>
+                <span>
+                  <i class="calendar alternate outline icon"></i>
+                  <%= moment(nextBlogs.createdAt).fromNow() %>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="ui text container top-spacing--more">
     <span class="ui horizontal divider header">Comments</span>
     <% blog.comments.forEach(function(comment) { %>
       <div class="ui comments">
