@@ -1,18 +1,22 @@
-<div class="ui visible inverted left vertical sidebar menu">
+<div class="ui inverted menu admin-nav">
   <a class="item" href="/">
     <i class="home icon"></i>
     Go to Website
   </a>
   <a class="item" href="/admin">
     <i class="block layout icon"></i>
-    Blogs
+    All Blogs
   </a>
   <a class="item" href="/blogs/new">
-    <i class="calendar icon"></i>
+    <i class="edit icon"></i>
     New Post
   </a>
-  <a class="item">
+  <a href="/admin/new" class="item">
+      <i class="user icon"></i>
+      New Admin
+    </a>
+  <div class="ui right dropdown item">
     <i class="smile icon"></i>
-    Placeholder
-  </a>
+    Hi &nbsp;<strong> <%= currentUser.username %> </strong></a>
+  </div>
 </div>
