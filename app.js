@@ -11,7 +11,8 @@ var express        = require('express'),
 var indexRoutes   = require('./routes/index'),
     blogRoutes    = require('./routes/blog'),
     commentRoutes = require('./routes/comment'),
-    adminRoutes    = require('./routes/admin');
+    adminRoutes   = require('./routes/admin'),
+    userRoutes    = require('./routes/user');
 
 // APP CONFIG
 mongoose.connect('mongodb://localhost:27017/blog_app');
@@ -45,6 +46,7 @@ app.use(indexRoutes);
 app.use(blogRoutes);
 app.use(commentRoutes);
 app.use(adminRoutes);
+app.use(userRoutes);
 
 app.listen(3000, function() {
   console.log('Server has started on port: 3000');
