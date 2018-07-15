@@ -18,4 +18,12 @@ middleWareObj.isAdmin = function (req, res, next) {
   }
 };
 
+middleWareObj.isOwner = function(req, res, next) {
+  if (req.isAuthenticated() && req.user._id == req.params.id) {
+    return next();
+  } else {
+    res.redirect('/user');
+  }
+};
+
 module.exports = middleWareObj;
