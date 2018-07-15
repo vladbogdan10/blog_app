@@ -1,0 +1,83 @@
+<% include ./partials/header.ejs %>
+  <% include ./partials/navbar.ejs %>
+
+<div class="ui container top-spacing--more">
+  <div class="ui clearing orange segment">
+    <h1>
+      <%= currentUser.username %>
+    </h1>
+    <div class="ui divider"></div>
+    <div class="ui items">
+      <div class="item">
+        <div class="ui medium image">
+          <img src="https://semantic-ui.com/images/avatar2/large/matthew.png" alt="">
+        </div>
+        <div class="content">
+          <div class="ui olive segment">
+            <div class="ui accordion">
+              <div class="title">
+                Name:
+                <strong>
+                  <%= user.username %>
+                </strong>
+                <a class="ui right floated accordion-button">
+                  Change
+                </a>
+              </div>
+              <div class="content">
+                <div class="ui fluid action input">
+                  <input type="text" placeholder="New Name">
+                  <div class="ui olive button">Submit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ui olive segment">
+            <div class="ui accordion">
+              <div class="title">
+                Email:
+                <strong>
+                  <%= user.email %>
+                </strong>
+                <a class="ui right floated accordion-button">
+                  Change
+                </a>
+              </div>
+              <div class="content">
+                <div class="ui fluid action input">
+                  <input type="text" placeholder="New Email">
+                  <div class="ui olive button">Submit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ui olive segment">
+            <div class="ui accordion">
+              <div class="title">
+                Password
+                <a class="ui right floated accordion-button">
+                  Change
+                </a>
+              </div>
+              <div class="content">
+                <div class="ui fluid action input">
+                  <input type="text" placeholder="New Name">
+                  <div class="ui olive button">Submit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="extra">
+            <strong>About:</strong>
+            The best user!
+          </div>
+        </div>
+      </div>
+    </div>
+    <form action="">
+      <button class="ui right floated negative button">DELETE ACCOUNT</button>
+    </form>
+  </div>
+</div>
+
+<% include ./partials/footer.ejs %>
