@@ -2,8 +2,6 @@
 		<div class="ui secondary pointing stackable menu navbar">
 			<a href="/" class="item active">Home</a>
 			<a href="/blogs" class="item">Blogs</a>
-			<a class="item">About</a>
-			<a class="item">Contact</a>
 			<div class="ui right dropdown item">
 				<% if (!currentUser) { %>
 					Login / Sign up
@@ -16,6 +14,9 @@
 						<a href="/login" class="ui item">Log in</a>
 						<a href="/register" class="ui item">Sign up</a>
 					<% } else { %>
+						<% if (currentUser.admin) { %>
+							<a href="/admin" class="ui item">Admin</a>
+						<% } %>
 						<a href="/user" class="ui item">Account</a>
 						<a href="/logout" class="ui item">Log out</a>
 					<% } %>
