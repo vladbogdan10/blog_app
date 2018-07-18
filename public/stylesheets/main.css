@@ -2,10 +2,22 @@ body {
 	padding: 1em !important;
 }
 
+.ui.message {
+	top: 70px;
+}
+
 .josefin-font,
 .header,
 h1, h2, h3, h4, h5 {
 	font-family: 'Josefin Sans', sans-serif !important;
+}
+
+.top-spacing {
+	margin-top: 70px !important;
+}
+
+.top-spacing--more {
+	margin-top: 100px !important;
 }
 
 .navbar {
@@ -16,6 +28,14 @@ h1, h2, h3, h4, h5 {
 	top: 0;
 	padding-top: 1em;
 	z-index: 200;
+}
+
+.admin-nav {
+	margin-top: 0 !important;
+}
+
+.trumbowyg-editor {
+	height: 500px !important;
 }
 
 .centered-form {
@@ -103,10 +123,26 @@ h1, h2, h3, h4, h5 {
 	}
 }
 
-.top-spacing {
-	margin-top: 70px !important;
+.post-icons {
+	margin-right: 20px !important;
+	text-align: right;
 }
 
-.top-spacing--more {
-	margin-top: 100px !important;
+.post-icons i {
+	margin-left: 14px;
+	font-size: 1.2em;
+	color: black;
+}
+
+.post-cards {
+	width: 100% !important;
+}
+
+.post-cards .image {
+	height: 120px !important;
+	overflow: hidden;
+}
+
+.ui.accordion .title {
+	cursor: auto;
 }
