@@ -1,46 +1,47 @@
 var express    = require('express'),
     router     = express.Router(),
-    // passport   = require('passport'),
-    // User       = require('../models/user'),
+    Blog       = require('../models/blog'),
+    User       = require('../models/user'),
     middleWare = require('../middleware/middleware');
 
 // ADMIN ROUTE
-router.get('/admin', middleWare.isAdmin, function(req, res) {
-  res.render('admin/admin');
+router.get('/admin',middleWare.isAdmin, function(req, res) {
+  if (!req.user) {
+    req.flash('error', 'Login as admin!');
+    res.redirect('/login');
+  } else {
+      Blog.find({'author.username': req.user.username})
+      .sort({createdAt: -1})
+      .exec(function(err, blogs) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render('admin/admin', {blogs: blogs});
+      }
+    });
+  }
 });
 
-// // CREATE NEW ADMIN ROUTE
-// router.post('/admin', middleWare.isAdmin, function(req, res) {
-//   var newAdmin = new User({
-//     username: req.body.username,
-//     email: req.body.email,
-//     admin: true
-//   });
-//   User.register(newAdmin, req.body.password, function(err) {
-//     if (err) {
-//       req.flash('error', err.message);
-//       return res.redirect('/admin');
-//     }
-//     passport.authenticate('local')(req, res, function() {
-//       req.flash('success', 'New admin created!');
-//       res.redirect('/admin');
-//     });
-//   });
-// });
+// NEW ADMIN ROUTE
+router.get('/admin/new', middleWare.isAdmin, function(req, res) {
+  res.render('admin/new');
+});
 
-// //LOG IN ROUTE
-// router.get('/admin/login', function(req, res) {
-//   res.render('admin/admin-login');
-// });
-
-// //ADMIN LOGIN
-// router.post('/admin/login', passport.authenticate('local', 
-//   {
-//     successRedirect: '/admin',
-//     failureRedirect: '/admin/login',
-//     failureFlash: true,
-//     successFlash: 'Welcome Back! '
-//   }), function(req, res) {
-// });
+// CREATE NEW ADMIN ROUTE
+router.post('/admin', middleWare.isAdmin, function(req, res) {
+  var newAdmin = new User({
+    username: req.body.username,
+    email: req.body.email,
+    admin: true
+  });
+  User.register(newAdmin, req.body.password, function(err) {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('/admin');
+    } else {
+      res.redirect('/admin');
+    }
+  });
+});
 
 module.exports = router;
