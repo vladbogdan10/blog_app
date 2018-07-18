@@ -42,14 +42,27 @@
     <div class="ui divider"></div>
 
     <% if (currentUser && blog.author.id.equals(currentUser._id)) { %>
-      <a class="ui yellow button" href="/blogs/<%= blog._id %>/edit">Edit</a>
-      <form id="del-form" class="inline" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-        <button id="del-btn" class="ui red button">Delete</button>
-      </form>
+      <div class="ui small buttons">
+        <a class="ui yellow basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+        <form id="del-form" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+          <button id="del-btn" class="ui red basic button">Delete</button>
+        </form>
+      </div>
+      <!-- Delete Modal -->
+      <div class="ui modal">
+        <div class="header">DELETE</div>
+        <div class="content">
+          <p>Are you sure you want to DELETE this post?</p>
+        </div>
+        <div class="actions">
+          <div class="ui cancel button">Cancel</div>
+          <div class="ui approve red button">Delete</div>
+        </div>
+      </div>
+      <!-- End of Delete Modal -->
     <% } %>
   </div>
 
-  <!-- <div class="ui divider top-spacing"></div> -->
   <div class="ui container top-spacing--more">
     <p class="blog__title--small josefin-font">Maybe you like this ones too!</p>
     <div class="ui stackable three column grid">
@@ -128,18 +141,5 @@
       <% } %>
     </form>
   </div>
-
-  <!-- Delete Modal -->
-  <div class="ui modal">
-      <div class="header">DELETE</div>
-      <div class="content">
-        <p>Are you sure you want to DELETE this post?</p>
-      </div>
-      <div class="actions">
-        <div class="ui cancel button">Cancel</div>
-        <div class="ui approve red button">Delete</div>
-      </div>
-    </div>
-    <!-- End of Delete Modal -->
   
  <% include ../partials/footer.ejs %>
