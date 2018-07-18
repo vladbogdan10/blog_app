@@ -12,11 +12,16 @@
     New Post
   </a>
   <a href="/admin/new" class="item">
-      <i class="user icon"></i>
+    <i class="user icon"></i>
       New Admin
     </a>
   <div class="ui right dropdown item">
     <i class="smile icon"></i>
     Hi &nbsp;<strong> <%= currentUser.username %> </strong></a>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <a href="/user" class="ui item">Account</a>
+      <a href="/logout" class="ui item">Log out</a>
+    </div>
   </div>
 </div>
