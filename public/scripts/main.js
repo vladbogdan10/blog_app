@@ -16,13 +16,6 @@ $('#del-btn').click(function() {
   });
 });
 
-// Close pop-up messages
-$('.message .close').on('click', function() {
-  $(this)
-  .closest('.message')
-  .transition('fade');
-});
-
 // FORM VALIDATION
 $('.ui.form').form({
   fields: {
@@ -30,7 +23,7 @@ $('.ui.form').form({
       identifier: 'username',
       rules: [{
         type: 'empty',
-        prompt: 'Please enter your username'
+        prompt: 'Please enter your name'
       }]
     },
     email: {
@@ -56,6 +49,18 @@ $('.ui.form').form({
           prompt: 'Your password must be at least 6 characters'
         }
       ]
+    },
+    secondPassword: {
+      identifier: 'secondPassword',
+      rules: [{
+          type: 'empty',
+          prompt: 'Please enter your password'
+        },
+        {
+          type: 'length[6]',
+          prompt: 'Your password must be at least 6 characters'
+        }
+      ]
     }
   }
 });
@@ -63,3 +68,11 @@ $('.ui.form').form({
 // DROPDOWN INITIALIZE
 $('.ui.dropdown')
   .dropdown();
+
+// ACCORDION INITIALIZE
+$('.ui.accordion')
+  .accordion({
+    selector: {
+      trigger: '.accordion-button'
+    }
+});
