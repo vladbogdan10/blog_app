@@ -1,83 +1,110 @@
 <% include ./partials/header.ejs %>
   <% include ./partials/navbar.ejs %>
 
-<div class="ui container top-spacing--more">
-  <div class="ui clearing orange segment">
-    <h1>
-      <%= currentUser.username %>
-    </h1>
-    <div class="ui divider"></div>
-    <div class="ui items">
-      <div class="item">
-        <div class="ui medium image">
-          <img src="https://semantic-ui.com/images/avatar2/large/matthew.png" alt="">
-        </div>
-        <div class="content">
-          <div class="ui olive segment">
-            <div class="ui accordion">
-              <div class="title">
-                Name:
-                <strong>
-                  <%= user.username %>
-                </strong>
-                <a class="ui right floated accordion-button">
-                  Change
-                </a>
-              </div>
-              <div class="content">
-                <div class="ui fluid action input">
-                  <input type="text" placeholder="New Name">
-                  <div class="ui olive button">Submit</div>
+  <div class="ui container top-spacing--more">
+    <div class="ui clearing orange segment">
+      <h1>
+        <%= currentUser.username %>
+      </h1>
+      <div class="ui divider"></div>
+      <div class="ui items">
+        <div class="item">
+          <div class="ui medium image">
+            <img src="https://semantic-ui.com/images/avatar2/large/matthew.png" alt="">
+          </div>
+          <div class="content">
+            <div class="ui olive segment">
+              <div class="ui accordion">
+                <div class="title">
+                  Name:
+                  <strong>
+                    <%= user.username %>
+                  </strong>
+                  <a class="ui right floated accordion-button">
+                    Change
+                  </a>
+                </div>
+                <div class="content">
+                  <form class="ui form" action="/user/<%= user._id %>?_method=PUT" method="POST">
+                    <div class="ui fluid action input">
+                      <input id="username" type="text" name="user[username]" placeholder="New Name">
+                      <button class="ui olive button">Submit</button>
+                    </div>
+                    <div class="ui error message"></div>
+                  </form>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="ui olive segment">
-            <div class="ui accordion">
-              <div class="title">
-                Email:
-                <strong>
-                  <%= user.email %>
-                </strong>
-                <a class="ui right floated accordion-button">
-                  Change
-                </a>
-              </div>
-              <div class="content">
-                <div class="ui fluid action input">
-                  <input type="text" placeholder="New Email">
-                  <div class="ui olive button">Submit</div>
+            <div class="ui olive segment">
+              <div class="ui accordion">
+                <div class="title">
+                  Email:
+                  <strong>
+                    <%= user.email %>
+                  </strong>
+                  <a class="ui right floated accordion-button">
+                    Change
+                  </a>
+                </div>
+                <div class="content">
+                  <form class="ui form" action="/user/<%= user._id %>?_method=PUT" method="POST">
+                    <div class="ui fluid action input">
+                      <input id="email" type="text" name="user[email]" placeholder="New Email">
+                      <button class="ui olive button">Submit</button>
+                    </div>
+                    <div class="ui error message"></div>
+                  </form>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="ui olive segment">
-            <div class="ui accordion">
-              <div class="title">
-                Password
-                <a class="ui right floated accordion-button">
-                  Change
-                </a>
-              </div>
-              <div class="content">
-                <div class="ui fluid action input">
-                  <input type="text" placeholder="New Name">
-                  <div class="ui olive button">Submit</div>
+            <div class="ui olive segment">
+              <div class="ui accordion">
+                <div class="title">
+                  Password
+                  <a class="ui right floated accordion-button">
+                    Change
+                  </a>
+                </div>
+                <div class="content">
+                  <form class="ui form" action="/user/<%= user._id %>?_method=PUT" method="POST">
+                    <div class="two fields">
+                      <div class="field">
+                        <input id="password" type="password" name="user[oldPassword]" placeholder="Old Password">
+                      </div>
+                      <div class="field">
+                        <input id="secondPassword" type="password" name="user[newPassword]" placeholder="New Password">
+                      </div>
+                      <button class="ui olive button">Submit</button>
+                    </div>
+                    <div class="ui error message"></div>
+                  </form>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="extra">
-            <strong>About:</strong>
-            The best user!
+            <div class="extra">
+              <strong>About:</strong>
+              The best user!
+            </div>
           </div>
         </div>
       </div>
+      <form id="del-form" action="/user/<%= currentUser._id %>?_method=DELETE" method="POST">
+        <button id="del-btn" class="ui right floated negative button">DELETE ACCOUNT</button>
+      </form>
     </div>
-    <form action="">
-      <button class="ui right floated negative button">DELETE ACCOUNT</button>
-    </form>
   </div>
-</div>
+
+  <!-- Delete Modal -->
+  <div class="ui modal">
+    <div class="header">ACCOUNT DELETE</div>
+    <div class="content">
+      <p>Are you sure you want to DELETE your ACCOUNT? It can't be reverted!</p>
+    </div>
+    <div class="actions">
+      <div class="ui cancel button">Cancel</div>
+      <div class="ui approve red button">Delete</div>
+    </div>
+  </div>
+  <!-- End of Delete Modal -->
 
 <% include ./partials/footer.ejs %>
