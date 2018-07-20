@@ -17,7 +17,7 @@ var indexRoutes   = require('./routes/index'),
 // APP CONFIG
 mongoose.connect('mongodb://localhost:27017/blog_app');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
+app.use('/public', express.static('public'));
 app.use(express.static(__dirname + '/node_modules/trumbowyg/dist'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverried('_method'));
