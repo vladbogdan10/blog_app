@@ -2,9 +2,10 @@ body {
 	padding: 1em !important;
 }
 
-.ui.message {
+/* .ui.message {
 	top: 70px;
-}
+	margin-bottom: 70px !important;
+} */
 
 .josefin-font,
 .header,
@@ -80,6 +81,14 @@ h1, h2, h3, h4, h5 {
 	line-height: 1.2;
 }
 
+.blog__title a {
+ color: rgb(48, 48, 48);
+}
+
+.blog__title:hover a {
+	color: rgb(65, 131, 196);
+ }
+
 .blog__title--small {
 	font-size: 1.6em;
 }
@@ -113,7 +122,7 @@ h1, h2, h3, h4, h5 {
 
 /* ARTICLE IMAGE */
 .blog__body img {
-	width: 100%;
+	max-width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -136,13 +145,56 @@ h1, h2, h3, h4, h5 {
 
 .post-cards {
 	width: 100% !important;
+	overflow: hidden;
+}
+
+.post-cards .header {
+	overflow: hidden;
+	text-overflow: ellipsis !important;
+	white-space: nowrap;
 }
 
 .post-cards .image {
-	height: 120px !important;
+	height: 140px !important;
 	overflow: hidden;
 }
 
 .ui.accordion .title {
 	cursor: auto;
 }
+
+/* FILE UPLOAD BUTTON */
+input[type="file"] {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+	max-width: 90%;
+	font-size: 1.25rem;
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0.6em 0;
+}
+
+.inputfile + label {
+	color: #e98542;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+	color: #c2694e;
+}
+
+.save-button {
+	visibility: hidden;
+}
+/* FILE UPLOAD BUTTON END */
