@@ -1,8 +1,21 @@
 // ADD CLASS ACTIVE TO NAVABR
-// $('.menu .item').on('click', function() {
-//   $('.menu .item').removeClass('active');
+// $('.navbar .menu-item').on('click', function() {
+//   $('.navbar .menu-item').removeClass('active');
 //   $(this).addClass('active');
-// }); 
+// });
+
+// console.log(window.location.pathname);
+
+// $(function(){
+//   var current = location.pathname;
+//   $('.navbar .menu-item').each(function(){
+//       var $this = $(this);
+//       // if the current path is like this link, make it active
+//       if($this.attr('href').indexOf(current) !== -1){
+//           $this.addClass('active');
+//       }
+//   });
+// });
 
 // Prompt user on delete
 $('#del-btn').click(function() {
@@ -75,4 +88,22 @@ $('.ui.accordion')
     selector: {
       trigger: '.accordion-button'
     }
+});
+
+// CUSTOM FILE INPUT 
+var input = document.querySelectorAll( '.inputfile' );
+Array.prototype.forEach.call(input, function( input ) {
+  var label	 = input.nextElementSibling,
+      labelVal = label.innerHTML;
+
+  input.addEventListener( 'change', function( e ) {
+    document.querySelector('.save-button').style.visibility = 'visible';
+    var fileName = '';
+    fileName = e.target.value.split( '\\' ).pop();
+    if (fileName) {
+      label.querySelector( 'span' ).innerHTML = fileName;
+    } else {
+      label.innerHTML = labelVal;
+    }
+  });
 });
