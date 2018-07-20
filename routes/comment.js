@@ -24,6 +24,7 @@ router.post('/blogs/:id/comments', middleWare.isLoggedIn, function(req, res) {
           } else {
             comment.author.id = req.user._id;
             comment.author.username = req.user.username;
+            comment.author.img = req.user.img;
             comment.save();
             blog.comments.push(comment);
             blog.save();
