@@ -10,7 +10,14 @@
       <div class="ui items">
         <div class="item">
           <div class="ui medium image">
-            <img src="https://semantic-ui.com/images/avatar2/large/matthew.png" alt="">
+            <img src="/<%= user.img %>" alt="">
+            <form action="/user/avatar" method="POST" enctype="multipart/form-data">
+              <div class="box">
+                <input type="file" name="img_upload" id="img_upload" class="inputfile" accept=".jpg, .jpeg, .png">
+                <label for="img_upload"><span>Choose image here&hellip;</span></label>
+              </div>
+              <input class="ui submit small button save-button" type="submit" value="Save">
+            </form>
           </div>
           <div class="content">
             <div class="ui olive segment">
