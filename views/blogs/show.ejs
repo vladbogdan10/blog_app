@@ -2,14 +2,14 @@
   <% include ../partials/navbar.ejs %>
 
   <div class="ui container crop top-spacing">
-    <img class="ui image" src="<%= blog.image %>">
+    <img class="ui fluid image" src="/<%= blog.image %>">
   </div>
   <div class="ui container text josefin-font top-spacing">
     <h1 class="blog__title"><%= blog.title %></h1>
     <div class="ui feed">
       <div class="event">
         <div class="label">
-          <img src="https://semantic-ui.com/images/avatar/small/joe.jpg">
+          <img src="/<%= blog.author.img %>">
         </div>
         <div class="content">
           <div class="summary">
@@ -17,7 +17,7 @@
               <%= blog.author.username %>
             </span>
             <div class="date">
-              <%= moment(blog.createdAt).fromNow() %>
+              <%= blog.createdAt.toDateString() %>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@
           <div class="ui link cards">
             <a class="card post-cards" href="/blogs/<%= nextBlogs._id %>">
               <div class="image">
-                <img src="<%= nextBlogs.image %>">
+                <img src="/<%= nextBlogs.image %>">
               </div>
               <div class="content">
                 <div class="header"> <%= nextBlogs.title %> </div>
@@ -79,7 +79,20 @@
                   <span class="blog__category"> <%= nextBlogs.category %> </span>
                 </div>
                 <div class="description">
-                  <%- nextBlogs.body.substring(0, 50) %>...
+                  <div class="ui small feed">
+                    <div class="event">
+                      <div class="label">
+                        <img src="/<%= blog.author.img %>">
+                      </div>
+                      <div class="content">
+                        <div class="summary">
+                          <span class="user">
+                            <%= blog.author.username %>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="extra content">
@@ -105,7 +118,7 @@
       <div class="ui comments">
         <div class="comment">
           <a class="avatar">
-            <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+            <img src="/<%= comment.author.img %>">
           </a>
           <div class="content">
             <a class="author">
@@ -118,9 +131,6 @@
               <p>
                 <%= comment.text %>
               </p>
-            </div>
-            <div class="actions">
-              <a class="reply">Reply</a>
             </div>
           </div>
         </div>
