@@ -6,7 +6,7 @@
 			<% blogs.docs.forEach(function(blogs) { %>
 				<div class="item">
 					<div class="ui large image">
-						<img src="<%= blogs.image %>" alt="blog image">
+						<img src="/<%= blogs.image %>" alt="blog image">
 					</div>
 					<div class="middle aligned content">
 						<a href="/blogs/<%= blogs._id %>" class="blog__title">
@@ -25,7 +25,7 @@
 							<div class="ui feed">
 								<div class="event">
 									<div class="label">
-										<img src="https://semantic-ui.com/images/avatar/small/joe.jpg">
+										<img src="/<%= blogs.author.img %>">
 									</div>
 									<div class="content">
 										<div class="summary">
