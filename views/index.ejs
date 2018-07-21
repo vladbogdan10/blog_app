@@ -3,7 +3,7 @@
 
 		<div class="hero-header">
 			<div class="ui container center aligned hero-header__title">
-				<img src="/images/blog-title.png" alt="">
+				<img src="public/images/blog-title.png" alt="">
 			</div>
 		</div>
 
@@ -23,7 +23,9 @@
 				<br>
 				<div class="ui container center aligned">
 					<p class="blog__category"> <%= blogs[0].category %> </p>
-					<p class="blog__title"> <%= blogs[0].title %> </p>
+					<p class="blog__title">
+						<a href="/blogs/<%= blogs[0]._id %>"> <%= blogs[0].title %> </a> 
+					</p>
 					<div class="blog__middle-line"></div>
 					<span class="blog__date">Posted On <%= blogs[0].createdAt.toDateString() %></span>
 				</div>
@@ -42,7 +44,9 @@
 						<br>
 						<div class="ui container center aligned">
 							<p class="blog__category"> <%= blogs.category %> </p>
-							<p class="blog__title blog__title--small"> <%= blogs.title %> </p>
+							<p class="blog__title blog__title--small">
+								<a href="/blogs/<%= blogs._id %>"> <%= blogs.title %> </a>
+							</p>
 							<div class="blog__middle-line blog__middle-line--small"></div>
 							<span class="blog__date">Posted On <%= blogs.createdAt.toDateString() %></span>
 						</div>
@@ -54,9 +58,8 @@
 					</div>
 				<% }); %>
 			</div>
-			<div class="ui divider"></div>
-			<div class="ui container center aligned">
-				<a href="/blogs">Click for More</a>
+			<div class="ui container center aligned top-spacing">
+				<a class="ui basic fluid button" href="/blogs">Click for More</a>
 			</div>
 		</div>
 
