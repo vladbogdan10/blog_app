@@ -3,8 +3,8 @@ var express      = require('express'),
 		Blog         = require('../models/blog'),
 		middleWare   = require('../middleware/middleware'),
 		moment       = require('moment'),
-		multer     = require('multer'),
-    upload     = multer({dest: 'public/uploads/blog-images'});
+		multer     	 = require('multer'),
+    upload       = multer({dest: 'public/uploads/blog-images'});
 
 
 // INDEX ROUTE
@@ -25,13 +25,12 @@ router.get('/blogs/page-:page', function(req, res) {
 });
 
 // NEW ROUTE
-router.get('/blogs/new', function(req, res) {
+router.get('/blogs/new', middleWare.isAdmin, function(req, res) {
 	res.render('blogs/new');
 });
 
 // CREATE ROUTE
 router.post('/blogs', middleWare.isAdmin, upload.single('img_blog'), function(req, res) {
-	console.log(req.file);
 	var title = req.body.title,
 			category = req.body.category,
 			image = req.file.path,
