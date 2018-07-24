@@ -15,7 +15,9 @@ var indexRoutes   = require('./routes/index'),
     userRoutes    = require('./routes/user');
 
 // APP CONFIG
-mongoose.connect('mongodb://localhost:27017/blog_app');
+var url = process.env.DATABASEURL || 'mongodb://localhost:27017/blog_app';
+mongoose.connect(url);
+
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'));
 app.use(express.static(__dirname + '/node_modules/trumbowyg/dist'));
@@ -48,6 +50,4 @@ app.use(commentRoutes);
 app.use(adminRoutes);
 app.use(userRoutes);
 
-app.listen(3000, function() {
-  console.log('Server has started on port: 3000');
-});
+app.listen(process.env.PORT || 3000, process.env.IP);
