@@ -12,7 +12,8 @@ router.get('/', function(req, res) {
 		.limit(5)
 		.exec(function(err, blogs) {
 			if (err) {
-				console.log(err);
+				req.flash('error', 'Something went wrong! Try again.');
+				res.redirect('back');
 			} else {
 				res.render('index', {blogs: blogs});
 			}
@@ -41,18 +42,20 @@ router.post('/register', function(req, res) {
 
 //LOG IN ROUTE
 router.get('/login', function(req, res) {
+	req.session.returnTo = req.header('Referer');
 	res.render('login');
 });
 
 // LOG IN LOGIC
 router.post('/login', passport.authenticate('local', 
 	{
-		successRedirect: '/',
 		failureRedirect: '/login',
 		failureFlash: true,
 		successFlash: 'Welcome Back!'
 	}), function(req, res) {
-});
+		res.redirect(req.session.returnTo || '/');
+		delete req.session.returnTo;
+	});
 
 // LOG OUT ROUTE
 router.get('/logout', function(req, res) {
