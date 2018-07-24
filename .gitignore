@@ -1,8 +1,2 @@
 node_modules/
 public/uploads
-public/semantic-ui/dist/*
-public/semantic-ui/src
-public/semantic-ui/tasks
-public/semantic-ui/gulpfile.js
-!public/semantic-ui/dist/semantic.min.css
-!public/semantic-ui/dist/semantic.min.js
