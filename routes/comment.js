@@ -9,7 +9,8 @@ var express      = require('express'),
 router.post('/blogs/:id/comments', middleWare.isLoggedIn, function(req, res) {
   Blog.findById(req.params.id, function(err, blog) {
     if (err) {
-      console.log(err);
+      req.flash('error', 'Something went wrong! Try again.');
+      res.redirect('back');
     } else {
       if (!req.body.comment.body) {
         req.flash('error', 'Your comment could not be submited because was empty!');
@@ -19,7 +20,6 @@ router.post('/blogs/:id/comments', middleWare.isLoggedIn, function(req, res) {
         Comment.create(req.body.comment, function(err, comment) {
           if (err) {
             req.flash('error', 'Something went wrong');
-            console.log(err);
             res.redirect('/blogs/' + blog._id);
           } else {
             comment.author.id = req.user._id;
