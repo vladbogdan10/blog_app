@@ -14,7 +14,8 @@ router.get('/admin',middleWare.isAdmin, function(req, res) {
       .sort({createdAt: -1})
       .exec(function(err, blogs) {
       if (err) {
-        console.log(err);
+        req.flash('error', 'Something went wrong! Try again.');
+        res.redirect('back');
       } else {
         res.render('admin/admin', {blogs: blogs});
       }
