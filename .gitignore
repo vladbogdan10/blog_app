@@ -1,4 +1,5 @@
 node_modules/
+public/uploads
 public/semantic-ui/dist/*
 public/semantic-ui/src
 public/semantic-ui/tasks
