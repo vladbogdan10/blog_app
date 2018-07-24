@@ -44,8 +44,8 @@ router.post('/blogs', middleWare.isAdmin, upload.single('img_blog'), function(re
 
 	Blog.create(newBlog, function(err) {
 		if (err) {
+			req.flash('error', 'Something went wrong! Try again.');
 			res.render('blogs/new');
-			console.log(err);
 		} else {
 			res.redirect('/blogs');
 		}
@@ -58,7 +58,7 @@ router.get('/blogs/:id', function(req, res) {
 	.populate('comments')
 	.exec(function(err, showBlogPost) {
 		if (err) {
-			req.flash('error', 'Oops! Something went wrong, or the post is gone! :)');
+			req.flash('error', 'Oops! Something went wrong, or the post is gone. :)');
 			res.redirect('/blogs');
 		}
 	Blog.find()
@@ -89,6 +89,7 @@ router.get('/blogs/:id/edit', middleWare.isAdmin, function(req, res) {
 router.put('/blogs/:id', middleWare.isAdmin, function(req, res) {
 	Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlogPost) {
 		if (err) {
+			req.flash('error', 'Something went wrong! Try again.');
 			res.redirect('/blogs');
 		} else {
 			res.redirect('/blogs/' + req.params.id);
@@ -100,6 +101,7 @@ router.put('/blogs/:id', middleWare.isAdmin, function(req, res) {
 router.delete('/blogs/:id', middleWare.isAdmin, function(req, res) {
 	Blog.findByIdAndRemove(req.params.id, function(err) {
 		if (err) {
+			req.flash('error', 'Something went wrong! Try again.');
 			res.redirect('/blogs');
 		} else {
 			res.redirect('/blogs');
