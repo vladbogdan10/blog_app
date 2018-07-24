@@ -27,6 +27,9 @@
     "sanitize-html": "^1.18.2",
     "trumbowyg": "^2.10.0"
   },
+  "engines": {
+    "node": "8.11.2"
+  },
   "devDependencies": {
     "browser-sync": "^2.24.6",
     "gulp": "^3.9.1",
