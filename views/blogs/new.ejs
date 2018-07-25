@@ -3,18 +3,15 @@
  
   <div class="ui container top-spacing">
     <h1 style="text-align: center;">New Blog Post</h1>
-    <form class="ui form" action="/blogs" method="POST" enctype="multipart/form-data">
-
-      <input type="file" name="img_blog" id="img_blog" class="inputfile" accept=".jpg, .jpeg, .png">
-      <label for="img_blog"><i class="asterisk icon"></i><span>Choose Post Image Here&hellip;</span></label>   
-      <div class="ui divider"></div>
-
+    <form class="ui form" action="/blogs" method="POST">
       <div class="field">
         <label>Title</label>
         <input type="text" name="title" placeholder="Title">
       </div>
-        <!-- <label>Image URL</label>
-        <input type="text" name="image" placeholder="Image URL"> -->
+      <div class="field">
+        <label>Image URL</label>
+        <input type="text" name="image" placeholder="Image URL">
+      </div>
       <div class="field">
         <label>Category</label>
         <input type="text" name="category" placeholder="Example: Trees / Forest">
