@@ -176,41 +176,11 @@ h1, h2, h3, h4, h5 {
 	cursor: auto;
 }
 
-/* FILE UPLOAD BUTTON */
-input[type="file"] {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
+.crop-image {
+	max-height: 320px;
+	min-height: 320px;
 	overflow: hidden;
-	position: absolute;
-	z-index: -1;
 }
-
-.inputfile + label {
-	max-width: 90%;
-	font-size: 1.25rem;
-	font-weight: 700;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	cursor: pointer;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0.6em 0;
-}
-
-.inputfile + label {
-	color: #e98542;
-}
-
-.inputfile:focus + label,
-.inputfile + label:hover {
-	color: #c2694e;
-}
-
-.save-button {
-	visibility: hidden;
-}
-/* FILE UPLOAD BUTTON END */
 
 .footer-wrapper {
 	position: absolute;
