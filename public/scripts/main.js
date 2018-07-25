@@ -89,21 +89,3 @@ $('.ui.accordion')
       trigger: '.accordion-button'
     }
 });
-
-// CUSTOM FILE INPUT 
-var input = document.querySelectorAll( '.inputfile' );
-Array.prototype.forEach.call(input, function( input ) {
-  var label	 = input.nextElementSibling,
-      labelVal = label.innerHTML;
-
-  input.addEventListener( 'change', function( e ) {
-    document.querySelector('.save-button').style.visibility = 'visible';
-    var fileName = '';
-    fileName = e.target.value.split( '\\' ).pop();
-    if (fileName) {
-      label.querySelector( 'span' ).innerHTML = fileName;
-    } else {
-      label.innerHTML = labelVal;
-    }
-  });
-});
