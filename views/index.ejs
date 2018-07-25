@@ -40,7 +40,9 @@
 			<div class="ui stackable two column grid top-spacing">
 				<% blogs.slice(1).forEach(function(blogs) { %>
 					<div class="column">
-						<img class="ui fluid image" src="<%= blogs.image %>" alt="placeholder">
+						<div class="crop-image">
+							<img class="ui fluid image" src="<%= blogs.image %>" alt="placeholder">
+						</div>
 						<br>
 						<div class="ui container center aligned">
 							<p class="blog__category"> <%= blogs.category %> </p>
@@ -59,7 +61,7 @@
 				<% }); %>
 			</div>
 			<div class="ui hidden divider"></div>
-			<a class="ui basic fluid button" href="/blogs">Click for More</a>
+			<a class="ui basic fluid big button" href="/blogs">Click for More</a>
 		</div>
 
 		<% include ./partials/footer.ejs %>
