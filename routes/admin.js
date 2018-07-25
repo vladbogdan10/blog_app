@@ -40,6 +40,7 @@ router.post('/admin', middleWare.isAdmin, function(req, res) {
       req.flash('error', err.message);
       return res.redirect('/admin');
     } else {
+      req.flash('success', 'Admin account created! You have to log out and login with the new account.');
       res.redirect('/admin');
     }
   });
