@@ -1,9 +1,7 @@
 var express    = require('express'),
     router     = express.Router(),
     User       = require('../models/user'),
-    middleWare = require('../middleware/middleware'),
-    multer     = require('multer'),
-    upload     = multer({dest: 'public/uploads/profile-images'});
+    middleWare = require('../middleware/middleware');
 
 // INDEX ROUTE
 router.get('/user', middleWare.isLoggedIn, function(req, res) {
@@ -59,24 +57,6 @@ router.delete('/user/:id', function(req, res) {
     } else {
       req.flash('success', 'Your account has been deleted!');
       res.redirect('/');
-    }
-  });
-});
-
-router.post('/user/avatar', upload.single('img_upload'), function(req, res) {
-  User.findById(req.user._id, function(err, user) {
-    if (err) {
-      req.flash('error', 'Something went wrong! Try again!');
-      res.redirect('back');
-    } else {
-      if (!req.file) {
-        req.flash('error', 'Please choose an image!');
-        res.redirect('back');
-      } else {
-        user.img = req.file.path;
-        user.save();
-        res.redirect('back');
-      }
     }
   });
 });
