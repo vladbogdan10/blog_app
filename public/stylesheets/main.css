@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5 {
 	font-family: 'Josefin Sans', sans-serif !important;
 }
 
+.is-active {
+	display: none;
+}
+
 .top-spacing {
 	margin-top: 70px !important;
 }
@@ -32,8 +36,39 @@ h1, h2, h3, h4, h5 {
 	right: 0;
 	left: 0;
 	top: 0;
-	height: 55px;
+	min-height: 55px !important;
+	height: auto;
 	z-index: 200;
+}
+
+@media (max-width: 720px) {
+	.desktop-navbar {
+		display: none !important;
+	}
+}
+
+.mobile-navbar {
+	margin-top: 0 !important;
+	border-bottom: 2px solid rgb(222, 222, 223) !important;
+}
+
+.bars.icon {
+	padding: 5px 0 0 8px;
+	font-size: 1.8em;
+}
+
+.mobile-navbar-items {
+	position: relative;
+	margin-top: 6px;
+	font-size: 1.6em;
+	height: calc(100vh - 44px);
+	border-top: 2px solid rgb(222, 222, 223) !important;
+}
+
+@media (min-width: 721px) {
+	.mobile-navbar {
+		display: none !important;
+	}
 }
 
 .admin-nav {
@@ -186,5 +221,5 @@ h1, h2, h3, h4, h5 {
 }
 
 footer {
-	min-height: 150px;
+	min-height: 200px;
 }
