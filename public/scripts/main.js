@@ -17,6 +17,10 @@
 //   });
 // });
 
+$('.navbar-button').click(function() {
+  $('.mobile-navbar-items').toggleClass('is-active');
+});
+
 // Prompt user on delete
 $('#del-btn').click(function() {
   event.preventDefault();
