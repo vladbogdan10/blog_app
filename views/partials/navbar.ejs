@@ -1,7 +1,9 @@
 	<nav>
-		<div class="ui secondary pointing menu navbar">
+		<div class="ui secondary pointing menu navbar desktop-navbar">
 			<a href="/" class="item menu-item">Home</a>
 			<a href="/blogs" class="item menu-item">Blogs</a>
+			<div class="disabled item menu">About</div>
+			<div class="disabled item menu">Contact</div>
 			<div class="ui right dropdown item">
 				<% if (!currentUser) { %>
 					Login / Sign up
@@ -17,6 +19,37 @@
 					<% } else { %>
 						<% if (currentUser.admin) { %>
 							<a href="/admin" class="ui item">Admin</a>
+						<% } %>
+						<a href="/user" class="ui item">Account</a>
+						<a href="/logout" class="ui item">Log out</a>
+					<% } %>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui secondary menu stackable navbar mobile-navbar">
+			<div class="item menu navbar-button">
+				<i class="bars icon"></i>
+			</div>
+			<div class="mobile-navbar-items is-active">
+				<% if (currentUser) { %>
+					<div class="ui item">
+						<img class="ui avatar image" src="/<%= currentUser.img %>">
+						<span><%= currentUser.username %></span>
+					</div>
+					<div class="ui fitted divider"></div>
+				<% } %>
+					<a href="/" class="item menu-item">Home</a>
+					<a href="/blogs" class="item menu-item">Blogs</a>
+					<div class="disabled item menu">About</div>
+					<div class="disabled item menu">Contact</div>
+				<div>
+					<% if (!currentUser) { %>
+						<a href="/login" class="ui item">Log in</a>
+						<a href="/register" class="ui item">Sign up</a>
+						<% } else { %>
+							<% if (currentUser.admin) { %>
+								<a href="/admin" class="ui item">Admin</a>
 						<% } %>
 						<a href="/user" class="ui item">Account</a>
 						<a href="/logout" class="ui item">Log out</a>
